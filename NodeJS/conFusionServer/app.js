@@ -49,10 +49,6 @@ app.all('*', (req, res, next) => {
   }
 });
 
-
-//cookie
-//app.use(cookieParser('12345-67890-09876-54321'));
-
 app.use(session({
   name: 'session-id',
   secret: '12345-67890-09876-54321',
@@ -65,10 +61,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use('/imageUpload',uploadRouter);
 
+app.use('/users', usersRouter);
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leadersRouter);
