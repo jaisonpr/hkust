@@ -15,7 +15,11 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
     "react-native-elements": "^2.3.2",
     "react-native-web": "~0.13.12",
-    "react-navigation": "2.0.1"
+    "react-navigation": "2.0.1",
+    "react-redux": "5.0.7",
+    "redux": "4.0.0",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.2.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
