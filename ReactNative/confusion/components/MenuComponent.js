@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
 
+
 const mapStateToProps = state => {
     return {
       dishes: state.dishes
@@ -19,18 +20,17 @@ class Menu extends Component {
     };
 
     render() {
-
-        const renderMenuItem = ({item, index}) => {
-
+        
+        const renderMenuItem = ({ item, index }) => {
             return (
-                <Tile
-                    key={index}
-                    title={item.name}
-                    caption={item.description}
-                    featured
-                    onPress={() => navigate('DishDetail', { dishId: item.id })}
-                    imageSrc={{ uri: baseUrl + item.image}}
-                />
+            <Tile
+                key={index}
+                title={item.name}
+                caption={item.description}
+                featured
+                onPress={() => navigate("DishDetail", { dishId: item.id })}
+                imageSrc={{ uri: baseUrl + item.image }}
+            />
             );
         };
 

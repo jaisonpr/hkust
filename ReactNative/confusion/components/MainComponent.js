@@ -61,28 +61,33 @@ const HomeNavigator = createStackNavigator({
 });
 
 const MenuNavigator = createStackNavigator({
-        Menu: { 
-          screen: Menu,
-          navigationOptions: ({ navigation }) => ({
-            headerLeft: <Icon name="menu" size={24} 
-            color= 'white'
-            onPress={ () => navigation.toggleDrawer() } />          
-          })  
-        },
-        Dishdetail: { screen: DishDetail }
+    Menu: {
+      screen: Menu,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: (
+          <Icon
+            name="menu"
+            size={24}
+            color="white"
+            onPress={() => navigation.toggleDrawer()}
+          />
+        )
+      })
     },
-    {
-        initialRouteName: 'Menu',
-        navigationOptions: {
-            headerStyle: {
-                backgroundColor: "#512DA8"
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                color: "#fff"            
-            }
-        }
+    DishDetail: { screen: DishDetail }
+  },
+  {
+    initialRouteName: "Menu",
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#512DA8"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff"
+      }
     }
+  }
 );
 
 const AboutNavigator = createStackNavigator(
@@ -172,8 +177,8 @@ const MainNavigator = createDrawerNavigator({
           ),
         }
       },
-    Menu: 
-      { screen: MenuNavigator,
+    Menu: { 
+        screen: MenuNavigator,
         navigationOptions: {
           title: 'Menu',
           drawerLabel: 'Menu',
