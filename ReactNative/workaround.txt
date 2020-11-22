@@ -1,0 +1,11 @@
+file:
+
+ ~/workspace/coursera/hkust/ReactNative/confusion/node_modules/react-native-safe-area-view/index.js
+
+from:
+
+this.view._component.measureInWindow((winX, winY, winWidth, winHeight) => {
+
+to:
+
+this.view.getNode().measureInWindow((winX, winY, winWidth, winHeight) => {
