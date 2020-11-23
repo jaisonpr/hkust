@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Platform, Text, ScrollView, Image, StyleSheet, NetInfo, ToastAndroid } from 'react-native';
+import { View, Platform, Text, ScrollView, Image, StyleSheet, ToastAndroid } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import * as NetInfo from "@react-native-community/netinfo"
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
 import Home from './HomeComponent';
@@ -305,18 +306,18 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
 
-    NetInfo.getConnectionInfo()
-        .then((connectionInfo) => {
-            ToastAndroid.show('Initial Network Connectivity Type: '
-                + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType,
-                ToastAndroid.LONG)
-        });
+    // NetInfo.getConnectionInfo()
+    //     .then((connectionInfo) => {
+    //         ToastAndroid.show('Initial Network Connectivity Type: '
+    //             + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType,
+    //             ToastAndroid.LONG)
+    //     });
 
-    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   componentWillUnmount() {
-    NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   handleConnectivityChange = (connectionInfo) => {

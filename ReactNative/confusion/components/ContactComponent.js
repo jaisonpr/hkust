@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text } from "react-native";
 import { Card, Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import { MailComposer } from 'expo';
+import * as MailComposer from 'expo-mail-composer';
 
 
 function RenderContact() {
