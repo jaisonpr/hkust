@@ -47,6 +47,29 @@ class Reservation extends Component {
         return permission;
     }
 
+	async obtainCalendarPermission() {
+		let calendarPermission = await Permissions.getAsync(Permissions.CALENDAR);
+		if (calendarPermission.status !== 'granted') {
+			calendarPermission = await Permissions.askAsync(Permissions.CALENDAR);
+			if (calendarPermission.status !== 'granted') {
+				Alert.alert('Permission not granted to access calendar');
+			}
+		}
+		return calendarPermission;
+	}
+
+
+	async addReservationToCalendar(date) {
+		await this.obtainCalendarPermission();
+		Calendar.createEventAsync(Calendar.DEFAULT, {
+			title: 'Con Fusion Table Reservation',
+			startDate: new Date(Date.parse(date)),
+			endDate: new Date(Date.parse(date)).getTime() + (2*60*60*1000),
+			timeZone: 'Asia/Hong_Kong',
+			location: '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
+		});
+	}
+
     async presentLocalNotification(date) {
         await this.obtainNotificationPermission();
         Notifications.presentLocalNotificationAsync({
@@ -72,17 +95,26 @@ class Reservation extends Component {
                 '\n Date and Time: ' + this.state.date;
         
         Alert.alert(
-            'Your Reservation OK?', reservation,
-            [
-                {
-                    text: 'OK',
-                    onPress: () => this.resetForm()
-                },
-                {
-                    text: 'Cancel',
-                    onPress: () => this.resetForm()
-                }
-            ],
+            'Your Reservation OK?', reservation,            
+			[
+				{
+					text: 'OK',
+					onPress: () => {
+						this.presentLocalNotification(this.state.date);
+						this.addReservationToCalendar(this.state.date);
+						Alert.alert('Your reservation has been added to calendar');
+						this.resetForm();
+					}
+				},
+				{
+					text: 'Cancel',
+					onPress: () => {
+						console.log('Reservation Cancelled');
+						this.resetForm();
+					},
+					style: 'cancel'
+				}
+			],
             { cancelable: false }
         )
     }
